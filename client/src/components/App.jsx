@@ -8,6 +8,7 @@ import Player from "./Player.jsx";
 function App() {
   const [results, setResults] = useState([]);
   const [track, setTrack] = useState();
+  const [favorites, setFavorites] = useState()
   const [defaultData, setDefaultData] = useState(true);
   const token = window.localStorage.getItem("token");
 
@@ -35,14 +36,22 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const getFavorites = () => {
+    axios.get("/favorites").then((res) => {
+      setFavorites(res);
+    });
+  };
+
   useEffect(() => {
     getNewReleases();
   }, [token]);
 
   return (
     <div>
-      <Header getNewReleases={getNewReleases}></Header>
-      {/* <Login></Login> */}
+      <Header
+        getNewReleases={getNewReleases}
+        getFavorites={getFavorites}
+      ></Header>
       <SearchBar handleSearch={handleSearch}></SearchBar>
       {track ? <Player track={track} token={token}></Player> : null}
       <Results

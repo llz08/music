@@ -15,6 +15,7 @@ const Results = ({ results, handlePlay, defaultData }) => {
               return (
                 <Col>
                   <MusicEntry
+                  item={item}
                     name={item.name}
                     key={item.id}
                     artist={item.artists[0].name}
@@ -28,6 +29,7 @@ const Results = ({ results, handlePlay, defaultData }) => {
               return (
                 <Col>
                   <MusicEntry
+                  item={item}
                     name={item.name}
                     key={item.id}
                     artist={item.artists[0].name}

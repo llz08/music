@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import LyricsModal from "./LyricsModal.jsx";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
-const MusicEntry = ({ name, artist, album, uri, handlePlay }) => {
+const MusicEntry = ({ name, artist, album, uri, handlePlay, item }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const handleClick = () => {
@@ -15,7 +16,11 @@ const MusicEntry = ({ name, artist, album, uri, handlePlay }) => {
   };
 
   const handleLike = () => {
-    //tbd
+    axios.post('/save', {
+      item
+    })
+    .then(res=>console.log(res))
+    .catch(err=>console.log(err))
   };
 
   return (
